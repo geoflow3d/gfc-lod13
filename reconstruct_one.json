@@ -236,7 +236,6 @@
         "multisolid": false
       },
       "parameters": {
-        "LoD2": false,
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
