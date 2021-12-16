@@ -236,6 +236,7 @@
         "multisolid": false
       },
       "parameters": {
+        "LoD2": false,
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
@@ -910,7 +911,7 @@
       },
       "parameters": {
         "cellsize": 0.05000000074505806,
-        "fill_nodata": true,
+        "fill_nodata": false,
         "fill_nodata_window_size": 5,
         "megapixel_limit": 600,
         "use_ground": true

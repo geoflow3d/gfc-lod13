@@ -2,7 +2,7 @@
   "globals": {
     "CJ_DATASET_TITLE": [
       "str",
-      "3D BAG: Up-to-date, open 3D building models of the Netherlands"
+      "3D Basisbestrand"
     ],
     "CJ_GEOGRAPHIC_LOCATION": [
       "str",
@@ -26,7 +26,7 @@
     ],
     "OUTPUT_DB_CONNECTION": [
       "str",
-      "PG:dbname=bag_staging port=5432 host=localhost user=bag_user1 password=bag2017"
+      "PG:dbname=databasename port=5432 host=localhost user=username password=password1234"
     ],
     "OUTPUT_FORMAT": [
       "str",
@@ -54,11 +54,11 @@
     ],
     "RUN_REFERENCE": [
       "str",
-      "1337"
+      "v2022"
     ],
     "TILE_ID": [
       "str",
-      "X"
+      "1"
     ],
     "id_attribute": [
       "str",
@@ -128,7 +128,7 @@
         "part_attributes": false
       },
       "parameters": {
-        "citymodelIdentifier": "3DBAG_{{RUN_REFERENCE}}_{{TILE_ID}}",
+        "citymodelIdentifier": "{{RUN_REFERENCE}}_{{TILE_ID}}",
         "datasetTitle": "{{CJ_DATASET_TITLE}} Tile {{TILE_ID}}",
         "filepath": "{{OUTPUT_CITYJSON_DIR}}/{{TILE_ID}}.json",
         "geographicLocation": "{{CJ_GEOGRAPHIC_LOCATION}}",
@@ -154,12 +154,12 @@
           "Validator-LoD22.errors": "val3dity_codes_lod22",
           "ground_elevations": "h_maaiveld"
         },
-        "poc_address": "Delft University of Technology, The Netherlands",
-        "poc_contactName": "3D Geoinformation Group",
-        "poc_contactType": "organization",
-        "poc_emailAddress": "info@3dbag.nl",
+        "poc_address": "",
+        "poc_contactName": "",
+        "poc_contactType": "",
+        "poc_emailAddress": "",
         "poc_phone": "",
-        "poc_website": "https://3dbag.nl",
+        "poc_website": "",
         "prettyPrint": false,
         "referenceSystem": "{{OUTPUT_CRS}}",
         "version_1_0": true
@@ -185,8 +185,16 @@
             "attributes"
           ],
           [
+            "Reconstructor",
+            "ArrExtruder-LoD13.floor_elevation"
+          ],
+          [
             "OGRWriter-LoD13-3D",
             "attributes"
+          ],
+          [
+            "Reconstructor",
+            "Arr2LinearRings-LoD13.attributes"
           ],
           [
             "Reconstructor",
@@ -195,14 +203,6 @@
           [
             "Reconstructor",
             "LOD1Extruder-LoD11.floor_elevation"
-          ],
-          [
-            "Reconstructor",
-            "ArrExtruder-LoD13.floor_elevation"
-          ],
-          [
-            "Reconstructor",
-            "Arr2LinearRings-LoD13.attributes"
           ]
         ],
         "ground_point_clouds": [
@@ -286,15 +286,15 @@
           ],
           [
             "Reconstructor",
+            "Arr2LinearRings-LoD13.attributes"
+          ],
+          [
+            "Reconstructor",
             "AttrRingsSelector-LoD13.attributes_A"
           ],
           [
             "Reconstructor",
             "AttributeTester.attributes"
-          ],
-          [
-            "Reconstructor",
-            "Arr2LinearRings-LoD13.attributes"
           ]
         ],
         "linear_rings": [
