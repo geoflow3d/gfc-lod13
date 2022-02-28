@@ -144,6 +144,42 @@
         "AlphaShape"
       ]
     },
+    "Arr2LinearRings-LoD12": {
+      "connections": {
+        "attributes": [
+          [
+            "AttrRingsSelector-LoD12",
+            "attributes_B"
+          ]
+        ],
+        "linear_rings": [
+          [
+            "AttrRingsSelector-LoD12",
+            "linear_rings_B"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false,
+        "attributes": true,
+        "groundparts": false
+      },
+      "marked_outputs": {
+        "attributes": false,
+        "linear_rings": false
+      },
+      "parameters": {
+        "output_groundparts": true
+      },
+      "position": [
+        3537.0,
+        252.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "Arr2LinearRings"
+      ]
+    },
     "Arr2LinearRings-LoD13": {
       "connections": {
         "attributes": [
@@ -178,6 +214,46 @@
       "type": [
         "building-reconstruction",
         "Arr2LinearRings"
+      ]
+    },
+    "ArrDissolve-LoD12": {
+      "connections": {
+        "arrangement": [
+          [
+            "Arr2LinearRings-LoD12",
+            "arrangement"
+          ],
+          [
+            "ArrExtruder-LoD12",
+            "arrangement"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false,
+        "heightfield": false
+      },
+      "marked_outputs": {
+        "arrangement": false,
+        "global_elevation_50p": true,
+        "global_elevation_70p": true,
+        "global_elevation_max": true,
+        "global_elevation_min": true
+      },
+      "parameters": {
+        "dissolve_all_interior": true,
+        "dissolve_outside_fp": true,
+        "dissolve_seg_edges": false,
+        "dissolve_step_edges": false,
+        "step_height_threshold": 1.0
+      },
+      "position": [
+        2828.0,
+        327.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "ArrDissolve"
       ]
     },
     "ArrDissolve-LoD13": {
@@ -220,6 +296,41 @@
         "ArrDissolve"
       ]
     },
+    "ArrExtruder-LoD12": {
+      "connections": {
+        "multisolid": [
+          [
+            "FacesSelector-LoD12",
+            "faces_B"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false,
+        "floor_elevation": true
+      },
+      "marked_outputs": {
+        "faces": false,
+        "labels": false,
+        "mesh": false,
+        "multisolid": false
+      },
+      "parameters": {
+        "LoD2": false,
+        "do_floor": true,
+        "do_roofs": true,
+        "do_walls": true,
+        "snap_tolerance_exp": 4
+      },
+      "position": [
+        3151.0,
+        238.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "ArrExtruder"
+      ]
+    },
     "ArrExtruder-LoD13": {
       "connections": {
         "multisolid": [
@@ -253,6 +364,28 @@
       "type": [
         "building-reconstruction",
         "ArrExtruder"
+      ]
+    },
+    "AttrRingsSelector-LoD12": {
+      "marked_inputs": {
+        "attributes_A": true,
+        "attributes_B": false,
+        "linear_rings_A": true,
+        "linear_rings_B": false,
+        "replace": false,
+        "skip": false
+      },
+      "marked_outputs": {
+        "attributes": true,
+        "linear_rings": true
+      },
+      "position": [
+        3903.0,
+        203.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "AttrRingsSelector"
       ]
     },
     "AttrRingsSelector-LoD13": {
@@ -431,6 +564,10 @@
             "ipoints"
           ],
           [
+            "PC2MeshQuality-LoD12",
+            "ipoints"
+          ],
+          [
             "PC2MeshQuality-LoD13",
             "ipoints"
           ],
@@ -445,11 +582,19 @@
         ],
         "roof_elevation_50p": [
           [
+            "AttrRingsSelector-LoD12",
+            "attributes_A"
+          ],
+          [
             "AttrRingsSelector-LoD13",
             "attributes_A"
           ]
         ],
         "roof_elevation_70p": [
+          [
+            "AttrRingsSelector-LoD12",
+            "attributes_A"
+          ],
           [
             "AttrRingsSelector-LoD13",
             "attributes_A"
@@ -461,11 +606,19 @@
         ],
         "roof_elevation_max": [
           [
+            "AttrRingsSelector-LoD12",
+            "attributes_A"
+          ],
+          [
             "AttrRingsSelector-LoD13",
             "attributes_A"
           ]
         ],
         "roof_elevation_min": [
+          [
+            "AttrRingsSelector-LoD12",
+            "attributes_A"
+          ],
           [
             "AttrRingsSelector-LoD13",
             "attributes_A"
@@ -479,8 +632,16 @@
         ],
         "total_roofplane_cnt": [
           [
+            "Arr2LinearRings-LoD12",
+            "attributes"
+          ],
+          [
             "Arr2LinearRings-LoD13",
             "attributes"
+          ],
+          [
+            "AttrRingsSelector-LoD12",
+            "attributes_A"
           ],
           [
             "AttrRingsSelector-LoD13",
@@ -499,10 +660,10 @@
         "plane_id": false,
         "planes": false,
         "pts_per_roofplane": false,
-        "roof_elevation_50p": true,
-        "roof_elevation_70p": true,
-        "roof_elevation_max": true,
-        "roof_elevation_min": true,
+        "roof_elevation_50p": false,
+        "roof_elevation_70p": false,
+        "roof_elevation_max": false,
+        "roof_elevation_min": false,
         "roof_pt_cnt": true,
         "roof_type": false,
         "slant_roofplane_cnt": false,
@@ -587,6 +748,33 @@
         "DetectPlanes"
       ]
     },
+    "FacesSelector-LoD12": {
+      "connections": {
+        "faces": [
+          [
+            "PolygonTriangulator-LoD12",
+            "polygons"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "faces_A": false,
+        "faces_B": false,
+        "replace": false,
+        "skip": false
+      },
+      "marked_outputs": {
+        "faces": true
+      },
+      "position": [
+        3242.0,
+        365.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "FacesSelector"
+      ]
+    },
     "FacesSelector-LoD13": {
       "connections": {
         "faces": [
@@ -617,6 +805,10 @@
     "LOD1Extruder-LoD11": {
       "connections": {
         "mesh": [
+          [
+            "FacesSelector-LoD12",
+            "faces_A"
+          ],
           [
             "FacesSelector-LoD13",
             "faces_A"
@@ -650,11 +842,19 @@
       "connections": {
         "arrangement": [
           [
+            "ArrDissolve-LoD12",
+            "arrangement"
+          ],
+          [
             "ArrDissolve-LoD13",
             "arrangement"
           ]
         ],
         "groundparts": [
+          [
+            "Arr2LinearRings-LoD12",
+            "groundparts"
+          ],
           [
             "Arr2LinearRings-LoD13",
             "groundparts"
@@ -719,6 +919,30 @@
         "PC2MeshQuality"
       ]
     },
+    "PC2MeshQuality-LoD12": {
+      "marked_inputs": {
+        "face_ids": false,
+        "ipoints": false,
+        "triangles": false
+      },
+      "marked_outputs": {
+        "error_hist": true,
+        "face_errors": false,
+        "m2pc_error_hist": true,
+        "m2pc_error_max": true,
+        "mesh_error": false,
+        "mesh_error_f": true,
+        "point_errors": false
+      },
+      "position": [
+        3684.0,
+        475.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "PC2MeshQuality"
+      ]
+    },
     "PC2MeshQuality-LoD13": {
       "marked_inputs": {
         "face_ids": false,
@@ -735,8 +959,8 @@
         "point_errors": false
       },
       "position": [
-        3424.0,
-        915.65283203125
+        3427.0,
+        932.65283203125
       ],
       "type": [
         "building-reconstruction",
@@ -803,6 +1027,43 @@
       "position": [
         2801.0,
         -455.864013671875
+      ],
+      "type": [
+        "building-reconstruction",
+        "PolygonTriangulator"
+      ]
+    },
+    "PolygonTriangulator-LoD12": {
+      "connections": {
+        "multi_triangle_collections": [
+          [
+            "PC2MeshQuality-LoD12",
+            "triangles"
+          ]
+        ],
+        "ring_ids": [
+          [
+            "PC2MeshQuality-LoD12",
+            "face_ids"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "polygons": false
+      },
+      "marked_outputs": {
+        "multi_triangle_collections": true,
+        "normals": false,
+        "ring_ids": false,
+        "triangles": false
+      },
+      "parameters": {
+        "dupe_threshold_exp": 4,
+        "output_all_triangles": false
+      },
+      "position": [
+        3602.0,
+        377.0
       ],
       "type": [
         "building-reconstruction",
@@ -893,6 +1154,10 @@
         ],
         "heightfield": [
           [
+            "ArrDissolve-LoD12",
+            "heightfield"
+          ],
+          [
             "ArrDissolve-LoD13",
             "heightfield"
           ],
@@ -935,7 +1200,15 @@
       "connections": {
         "replace": [
           [
+            "AttrRingsSelector-LoD12",
+            "replace"
+          ],
+          [
             "AttrRingsSelector-LoD13",
+            "replace"
+          ],
+          [
+            "FacesSelector-LoD12",
             "replace"
           ],
           [
@@ -945,8 +1218,16 @@
         ],
         "roof_type": [
           [
+            "Arr2LinearRings-LoD12",
+            "attributes"
+          ],
+          [
             "Arr2LinearRings-LoD13",
             "attributes"
+          ],
+          [
+            "AttrRingsSelector-LoD12",
+            "attributes_A"
           ],
           [
             "AttrRingsSelector-LoD13",
@@ -956,6 +1237,14 @@
         "skip": [
           [
             "AttrRingsSelector-LoD13",
+            "skip"
+          ],
+          [
+            "AttrRingsSelector-LoD12",
+            "skip"
+          ],
+          [
+            "FacesSelector-LoD12",
             "skip"
           ],
           [
