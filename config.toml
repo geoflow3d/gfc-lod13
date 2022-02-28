@@ -1,0 +1,88 @@
+## Overview ##
+# This example configuration file describes the available parameters for the LoD1.3 building-reconstruction flowchart for the geoflow lod13tool
+
+### I/O ###
+
+# the input point cloud files. In LAS or LAZ format. Can be a list of files separated by a space.
+INPUT_LAS_FILES = /data/file1.laz /data/file2.las /data/file3.las
+
+# input dataset with footprints. Can be a vector file or a postgresql database [connection string](https://gdal.org/drivers/vector/pg.html)
+INPUT_FOOTPRINT_SOURCE = /data/footprint.gpkg
+
+# output directory for CityJSON files
+OUTPUT_CITYJSON_DIR = /output/cityjson
+
+# output directory for OBJ files
+OUTPUT_OBJ_DIR = /output/obj
+
+# output to postgreSQL DB
+OUTPUT_DB_CONNECTION = PG:dbname=databasename port=5432 host=localhost user=username password=password1234
+
+# DB table names to outpur to
+OUTPUT_LAYERNAME_LOD11_2D = LOD12_2D
+OUTPUT_LAYERNAME_LOD12_2D = LOD12_2D
+OUTPUT_LAYERNAME_LOD12_3D = LOD12_3D
+OUTPUT_LAYERNAME_LOD13_2D = LOD13_2D
+OUTPUT_LAYERNAME_LOD13_3D = LOD13_3D
+
+# in case of writing to PostgreSQL, the connection string would be like this:
+# OUTPUT_SOURCE_LOD12_2D = "PG:dbname=databasename port=5432 host=localhost user=username password=password1234"
+# specify the schema to write to as:
+# OUTPUT_LAYERNAME_LOD12_2D = myschema.LOD12_2D
+
+# overwriting output. If set to false the output features will be appended to the (existing) output source.
+overwrite_output = true
+
+# output vector format. See [OGR documentation](https://gdal.org/drivers/vector/index.html). For example `GPKG` or `PostgreSQL`.
+OUTPUT_FORMAT = PostgreSQL
+
+# name of boolean attribute in input footprints that tells if the building should be skipped for full LoD1.3+ reconstruction. Eg for greenhouses and very big industrial buildings, since these are difficult/slow to process due to glass roofs and large footprint area.
+skip_attribute_name = kas_warenhuis
+
+### Reconstruction parameters ###
+
+# the values below are tuned for AHN3
+
+# number of neighbors used for normal estimation
+normal_estimate__k = 8
+
+
+# number of neighbors used for region growing plane detection
+plane_detect__k = 15
+
+# maximum distance between plane and its inliers
+plane_detect__epsilon = 0.2
+
+# minimum number of inliers in each plane
+plane_detect__min_points = 15
+
+# maximum angle between plane normal and inlier normal, expressed as the dot product between the two normals. Eg 1.0 is a 0 degree angle and lower values are larger angles.
+plane_detect__normal_angle = 0.75
+
+# maximum distance between detected line and its inliers
+line_detect__epsilon = 0.4
+
+# Minimum number of points in a line (algorithm will first try to find lines with this `upper` minimum)
+line_detect__min_points_upper = 10
+
+# Absolute minimum number of points in a line (if it fails with the `upper` minimum algortihm wil lower the minimum gradually to this `lower` minimum)
+line_detect__min_points_lower = 5
+
+
+# Elevation percentile to determin the elevation of roof parts. NOTE: only the detected planes on the roof are considered here (no facade points, no points on small surfaces such as chimneys)
+roof_elevation__percentile = 0.7
+
+# Step height used in LoD1.3 generalisation; roofparts with a height difference smaller than this value are merged.
+lod13__step_height = 3.0
+
+### CityJSON settings and metadata ###
+# name of attribute to use for the cityobject ID in the CityJSON output. Should be unique.
+id_attribute = identificatie
+
+CJ_DATASET_TITLE = 3D basisbestand
+
+# Run reference that will be put in the CityJSON citymodelIdentifier field
+RUN_REFERENCE = v2022
+
+# Tile identifier that will be used to name the OBJ and CityJSON output
+TILE_ID = 1
