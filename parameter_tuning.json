@@ -1,0 +1,1221 @@
+{
+  "globals": {
+    "INPUT_FOOTPRINT_SOURCE": [
+      "str",
+      "test-data/kerk.gpkg"
+    ],
+    "INPUT_LAS_FILES": [
+      "str",
+      "test-data/wippolder.las"
+    ],
+    "line_detect__epsilon": [
+      "float",
+      0.4000000059604645
+    ],
+    "line_detect__min_points_lower": [
+      "int",
+      5
+    ],
+    "line_detect__min_points_upper": [
+      "int",
+      10
+    ],
+    "lod13__step_height": [
+      "float",
+      3.0
+    ],
+    "normal_estimate__k": [
+      "int",
+      5
+    ],
+    "optimisation_data_term": [
+      "float",
+      7.0
+    ],
+    "plane_detect__epsilon": [
+      "float",
+      0.20000000298023224
+    ],
+    "plane_detect__k": [
+      "int",
+      15
+    ],
+    "plane_detect__min_points": [
+      "int",
+      15
+    ],
+    "plane_detect__normal_angle": [
+      "float",
+      0.75
+    ]
+  },
+  "nodes": {
+    "3D draadmodel": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        3205.25,
+        -167.42050170898438
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
+    "3D vlakmodel": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        3530.25,
+        -177.42050170898438
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
+    "AlphaShape": {
+      "connections": {
+        "alpha_rings": [
+          [
+            "Vlak grenzen",
+            "geometries"
+          ],
+          [
+            "SegmentRasterise",
+            "alpha_rings"
+          ],
+          [
+            "DetectLines",
+            "edge_points"
+          ]
+        ],
+        "alpha_triangles": [
+          [
+            "SegmentRasterise",
+            "triangles"
+          ]
+        ],
+        "roofplane_ids": [
+          [
+            "SegmentRasterise",
+            "roofplane_ids"
+          ],
+          [
+            "DetectLines",
+            "roofplane_ids"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "pts_per_roofplane": false,
+        "skip": false
+      },
+      "marked_outputs": {
+        "alpha_edges": false,
+        "alpha_rings": false,
+        "alpha_triangles": false,
+        "boundary_points": false,
+        "edge_points": false,
+        "roofplane_ids": false,
+        "segment_ids": false
+      },
+      "parameters": {
+        "extract_polygons": true,
+        "optimal_alpha": false,
+        "optimal_only_if_needed": true,
+        "thres_alpha": 0.3499999940395355
+      },
+      "position": [
+        1265.1005859375,
+        193.20001220703125
+      ],
+      "type": [
+        "building-reconstruction",
+        "AlphaShape"
+      ]
+    },
+    "AlphaShape-ground": {
+      "connections": {
+        "alpha_triangles": [
+          [
+            "SegmentRasterise",
+            "ground_triangles"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "pts_per_roofplane": false,
+        "skip": false
+      },
+      "marked_outputs": {
+        "alpha_edges": false,
+        "alpha_rings": false,
+        "alpha_triangles": false,
+        "boundary_points": false,
+        "edge_points": false,
+        "roofplane_ids": false,
+        "segment_ids": false
+      },
+      "parameters": {
+        "extract_polygons": false,
+        "optimal_alpha": false,
+        "optimal_only_if_needed": true,
+        "thres_alpha": 0.25
+      },
+      "position": [
+        1255.0,
+        539.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "AlphaShape"
+      ]
+    },
+    "Arr2LinearRings-LoD13": {
+      "connections": {
+        "linear_rings": [
+          [
+            "OGRWriter-LoD13",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false,
+        "attributes": true,
+        "groundparts": false
+      },
+      "marked_outputs": {
+        "attributes": false,
+        "linear_rings": false
+      },
+      "parameters": {
+        "output_groundparts": true
+      },
+      "position": [
+        3453.2001953125,
+        252.0528564453125
+      ],
+      "type": [
+        "building-reconstruction",
+        "Arr2LinearRings"
+      ]
+    },
+    "Arr2LinearRingsDebug-final": {
+      "connections": {
+        "linear_rings": [
+          [
+            "Partitie Finaal",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false
+      },
+      "marked_outputs": {
+        "attributes": false,
+        "isolated_vertices": false,
+        "linear_rings": false
+      },
+      "position": [
+        2797.25,
+        -59.420501708984375
+      ],
+      "type": [
+        "building-reconstruction",
+        "Arr2LinearRingsDebug"
+      ]
+    },
+    "Arr2LinearRingsDebug-ini": {
+      "connections": {
+        "linear_rings": [
+          [
+            "Partitie Initieel",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false
+      },
+      "marked_outputs": {
+        "attributes": false,
+        "isolated_vertices": false,
+        "linear_rings": false
+      },
+      "position": [
+        2393.25,
+        -66.42050170898438
+      ],
+      "type": [
+        "building-reconstruction",
+        "Arr2LinearRingsDebug"
+      ]
+    },
+    "ArrDissolve-LoD13": {
+      "connections": {
+        "arrangement": [
+          [
+            "Arr2LinearRings-LoD13",
+            "arrangement"
+          ],
+          [
+            "Arr2LinearRingsDebug-final",
+            "arrangement"
+          ],
+          [
+            "ArrExtruder-LoD13",
+            "arrangement"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false,
+        "heightfield": false
+      },
+      "marked_outputs": {
+        "arrangement": false,
+        "global_elevation_50p": false,
+        "global_elevation_70p": false,
+        "global_elevation_max": false,
+        "global_elevation_min": false
+      },
+      "parameters": {
+        "dissolve_all_interior": false,
+        "dissolve_outside_fp": true,
+        "dissolve_seg_edges": true,
+        "dissolve_step_edges": true,
+        "step_height_threshold": "{{lod13__step_height}}"
+      },
+      "position": [
+        2803.0,
+        209.65283203125
+      ],
+      "type": [
+        "building-reconstruction",
+        "ArrDissolve"
+      ]
+    },
+    "ArrExtruder-LoD13": {
+      "connections": {
+        "faces": [
+          [
+            "3D draadmodel",
+            "geometries"
+          ]
+        ],
+        "multisolid": [
+          [
+            "PolygonTriangulator-LoD13",
+            "polygons"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false,
+        "floor_elevation": true
+      },
+      "marked_outputs": {
+        "faces": false,
+        "labels": false,
+        "mesh": false,
+        "multisolid": false
+      },
+      "parameters": {
+        "do_floor": true,
+        "do_roofs": true,
+        "do_walls": true,
+        "snap_tolerance_exp": 4
+      },
+      "position": [
+        3120.39990234375,
+        403.2528076171875
+      ],
+      "type": [
+        "building-reconstruction",
+        "ArrExtruder"
+      ]
+    },
+    "AttributeTester": {
+      "connections": {
+        "result": [
+          [
+            "AlphaShape-ground",
+            "skip"
+          ],
+          [
+            "AlphaShape",
+            "skip"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "attributes": true
+      },
+      "marked_outputs": {
+        "result": false
+      },
+      "parameters": {
+        "attribute_name": "kas_warenhuis"
+      },
+      "position": [
+        962.5,
+        62.3179931640625
+      ],
+      "type": [
+        "building-reconstruction",
+        "AttributeTester"
+      ]
+    },
+    "BuildArrFromLines": {
+      "connections": {
+        "arrangement": [
+          [
+            "TriSnap",
+            "arrangement"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "footprint": true,
+        "lines": false
+      },
+      "marked_outputs": {
+        "arr_complexity": false,
+        "arrangement": false
+      },
+      "parameters": {
+        "dist_threshold_exp": 2,
+        "fp_extension": 0.0,
+        "insert_lines": true,
+        "insert_with_snap": false,
+        "max_arr_complexity": 400
+      },
+      "position": [
+        2398.19970703125,
+        218.30029296875
+      ],
+      "type": [
+        "building-reconstruction",
+        "BuildArrFromLines"
+      ]
+    },
+    "DataCoverageCalc": {
+      "marked_inputs": {
+        "data_area": false,
+        "footprint_polygon": true,
+        "ground_parts": false
+      },
+      "marked_outputs": {
+        "data_coverage": true
+      },
+      "position": [
+        2012.5,
+        572.8179931640625
+      ],
+      "type": [
+        "building-reconstruction",
+        "DataCoverageCalc"
+      ]
+    },
+    "DetectLines": {
+      "connections": {
+        "edge_segments": [
+          [
+            "RegulariseLines",
+            "edge_segments"
+          ]
+        ],
+        "lines3d": [
+          [
+            "Grens lijnen",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "edge_points": false,
+        "pts_per_roofplane": false,
+        "roofplane_ids": false
+      },
+      "marked_outputs": {
+        "edge_segments": false,
+        "is_start": false,
+        "lines3d": false,
+        "ring_edges": false,
+        "ring_id": false,
+        "ring_idx": false,
+        "ring_order": false
+      },
+      "parameters": {
+        "dist_thres": "{{line_detect__epsilon}}",
+        "k": 10,
+        "line_extend": 0.05000000074505806,
+        "min_cnt_range_lower": "{{line_detect__min_points_lower}}",
+        "min_cnt_range_upper": "{{line_detect__min_points_upper}}",
+        "perform_chaining": true,
+        "remove_overlap": true,
+        "snap_threshold": 1.0
+      },
+      "position": [
+        1656.3016357421875,
+        236.7999267578125
+      ],
+      "type": [
+        "building-reconstruction",
+        "DetectLines"
+      ]
+    },
+    "DetectPlanes": {
+      "connections": {
+        "plane_adj": [
+          [
+            "PlaneIntersect",
+            "plane_adj"
+          ]
+        ],
+        "pts_per_roofplane": [
+          [
+            "PC2MeshQuality-LoD13",
+            "ipoints"
+          ],
+          [
+            "OptimiseArrangmentGrid",
+            "pts_per_roofplane"
+          ],
+          [
+            "PlaneIntersect",
+            "pts_per_roofplane"
+          ],
+          [
+            "SegmentRasterise",
+            "pts_per_roofplane"
+          ],
+          [
+            "DetectLines",
+            "pts_per_roofplane"
+          ],
+          [
+            "AlphaShape",
+            "pts_per_roofplane"
+          ]
+        ],
+        "total_roofplane_cnt": [
+          [
+            "Arr2LinearRings-LoD13",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "points": true
+      },
+      "marked_outputs": {
+        "horiz_roofplane_cnt": false,
+        "is_horizontal": false,
+        "is_wall": false,
+        "plane_adj": false,
+        "plane_id": false,
+        "planes": false,
+        "pts_per_roofplane": false,
+        "roof_elevation_50p": false,
+        "roof_elevation_70p": false,
+        "roof_elevation_max": false,
+        "roof_elevation_min": false,
+        "roof_pt_cnt": true,
+        "roof_type": false,
+        "slant_roofplane_cnt": false,
+        "total_roofplane_cnt": true,
+        "unsegmented_pt_cnt": true,
+        "wall_pt_cnt": true
+      },
+      "parameters": {
+        "horiz_min_count": 0.949999988079071,
+        "metrics_is_horizontal_threshold": 0.9700000286102295,
+        "metrics_is_wall_threshold": 0.30000001192092896,
+        "metrics_normal_k": "{{normal_estimate__k}}",
+        "metrics_plane_epsilon": "{{plane_detect__epsilon}}",
+        "metrics_plane_k": "{{plane_detect__k}}",
+        "metrics_plane_min_points": "{{plane_detect__min_points}}",
+        "metrics_plane_normal_threshold": "{{plane_detect__normal_angle}}",
+        "n_refit": 5,
+        "only_horizontal": false
+      },
+      "position": [
+        912.0,
+        132.79998779296875
+      ],
+      "type": [
+        "building-reconstruction",
+        "DetectPlanes"
+      ]
+    },
+    "DetectPlanes-ground": {
+      "connections": {
+        "pts_per_roofplane": [
+          [
+            "OptimiseArrangmentGrid",
+            "ground_pts_per_roofplane"
+          ],
+          [
+            "AlphaShape-ground",
+            "pts_per_roofplane"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "points": true
+      },
+      "marked_outputs": {
+        "horiz_roofplane_cnt": false,
+        "is_horizontal": false,
+        "is_wall": false,
+        "plane_adj": false,
+        "plane_id": false,
+        "planes": false,
+        "pts_per_roofplane": false,
+        "roof_elevation_50p": false,
+        "roof_elevation_70p": false,
+        "roof_elevation_max": false,
+        "roof_elevation_min": false,
+        "roof_pt_cnt": false,
+        "roof_type": false,
+        "slant_roofplane_cnt": false,
+        "total_roofplane_cnt": false,
+        "unsegmented_pt_cnt": false,
+        "wall_pt_cnt": false
+      },
+      "parameters": {
+        "horiz_min_count": 0.949999988079071,
+        "metrics_is_horizontal_threshold": 0.9700000286102295,
+        "metrics_is_wall_threshold": 0.30000001192092896,
+        "metrics_normal_k": 15,
+        "metrics_plane_epsilon": 0.20000000298023224,
+        "metrics_plane_k": 15,
+        "metrics_plane_min_points": 20,
+        "metrics_plane_normal_threshold": 0.75,
+        "n_refit": 50,
+        "only_horizontal": true
+      },
+      "position": [
+        918.0,
+        468.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "DetectPlanes"
+      ]
+    },
+    "Geregulariseerde lijnen": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        2090.25,
+        -103.42050170898438
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
+    "Grens lijnen": {
+      "marked_inputs": {
+        "colormap": false,
+        "geometries": false,
+        "identifiers": false,
+        "normals": false,
+        "values": false
+      },
+      "position": [
+        1817.25,
+        -103.84100341796875
+      ],
+      "type": [
+        "Visualisation",
+        "Painter"
+      ]
+    },
+    "Input Puntenwolk": {
+      "marked_inputs": {
+        "colormap": false,
+        "geometries": false,
+        "identifiers": false,
+        "normals": false,
+        "values": false
+      },
+      "position": [
+        628.25,
+        -105.84100341796875
+      ],
+      "type": [
+        "Visualisation",
+        "Painter"
+      ]
+    },
+    "LASInPolygons": {
+      "connections": {
+        "ground_elevations": [
+          [
+            "ArrExtruder-LoD13",
+            "floor_elevation"
+          ]
+        ],
+        "ground_point_clouds": [
+          [
+            "DetectPlanes-ground",
+            "points"
+          ]
+        ],
+        "point_clouds": [
+          [
+            "DetectPlanes",
+            "points"
+          ],
+          [
+            "Input Puntenwolk",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "buf_polygons": false,
+        "polygons": false
+      },
+      "marked_outputs": {
+        "ground_elevations": false,
+        "ground_point_clouds": false,
+        "point_clouds": false
+      },
+      "parameters": {
+        "buffer": 1.0,
+        "building_class": 6,
+        "cellsize": 50.0,
+        "ground_class": 2,
+        "ground_percentile": 0.05000000074505806,
+        "las_filepaths": "{{INPUT_LAS_FILES}}"
+      },
+      "position": [
+        290.5,
+        430.0679931640625
+      ],
+      "type": [
+        "building-reconstruction",
+        "LASInPolygons"
+      ]
+    },
+    "OBJWriter-LoD13": {
+      "marked_inputs": {
+        "triangles": false
+      },
+      "parameters": {
+        "filepath": "output/lod13.obj",
+        "no_offset": false,
+        "precision": 3
+      },
+      "position": [
+        3902.25,
+        462.5794982910156
+      ],
+      "type": [
+        "CoreIO",
+        "OBJWriter"
+      ]
+    },
+    "OGRLoader": {
+      "connections": {
+        "attributes": [
+          [
+            "AttributeTester",
+            "attributes"
+          ]
+        ],
+        "linear_rings": [
+          [
+            "PolygonSimplifyGEOS",
+            "polygons"
+          ]
+        ]
+      },
+      "marked_outputs": {
+        "area": false,
+        "attributes": false,
+        "is_valid": false,
+        "line_strings": false,
+        "linear_rings": false
+      },
+      "parameters": {
+        "base_elevation": 0.0,
+        "filepath": "{{INPUT_FOOTPRINT_SOURCE}}",
+        "layer_id": 0
+      },
+      "position": [
+        318.5,
+        154.0679931640625
+      ],
+      "type": [
+        "io-gdal",
+        "OGRLoader"
+      ]
+    },
+    "OGRWriter-LoD13": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "append": false,
+        "epsg": 7415,
+        "filepath": "output/lod13.gpkg",
+        "gdaldriver": "GPKG",
+        "layername": "geom",
+        "output_attribute_names": {},
+        "overwrite": true,
+        "require_attributes": false
+      },
+      "position": [
+        3897.25,
+        249.57949829101563
+      ],
+      "type": [
+        "io-gdal",
+        "OGRWriter"
+      ]
+    },
+    "OptimiseArrangmentGrid": {
+      "connections": {
+        "arrangement": [
+          [
+            "ArrDissolve-LoD13",
+            "arrangement"
+          ]
+        ],
+        "groundparts": [
+          [
+            "DataCoverageCalc",
+            "ground_parts"
+          ],
+          [
+            "Arr2LinearRings-LoD13",
+            "groundparts"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false,
+        "ground_pts_per_roofplane": false,
+        "heightfield": false,
+        "pts_per_roofplane": false
+      },
+      "marked_outputs": {
+        "arrangement": false,
+        "groundparts": false
+      },
+      "parameters": {
+        "data_multiplier": "{{optimisation_data_term}}",
+        "do_normalise": false,
+        "graph_cut_impl": 0,
+        "label_ground_outside_fp": true,
+        "n_iterations": 1,
+        "preset_labels": false,
+        "smoothness_multiplier": 1.0,
+        "use_ground": true,
+        "z_percentile": 0.8999999761581421
+      },
+      "position": [
+        2397.5,
+        386.3999938964844
+      ],
+      "type": [
+        "building-reconstruction",
+        "OptimiseArrangmentGrid"
+      ]
+    },
+    "PC2MeshQuality-LoD13": {
+      "marked_inputs": {
+        "face_ids": false,
+        "ipoints": false,
+        "triangles": false
+      },
+      "marked_outputs": {
+        "error_hist": true,
+        "face_errors": false,
+        "m2pc_error_hist": true,
+        "m2pc_error_max": true,
+        "mesh_error": false,
+        "mesh_error_f": true,
+        "point_errors": false
+      },
+      "position": [
+        3467.0,
+        518.65283203125
+      ],
+      "type": [
+        "building-reconstruction",
+        "PC2MeshQuality"
+      ]
+    },
+    "Partitie Finaal": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        2856.25,
+        -165.42050170898438
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
+    "Partitie Initieel": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        2435.25,
+        -181.42050170898438
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
+    "PlaneIntersect": {
+      "connections": {
+        "lines": [
+          [
+            "RegulariseLines",
+            "ints_segments"
+          ],
+          [
+            "Snijlijnen",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "plane_adj": false,
+        "pts_per_roofplane": false
+      },
+      "marked_outputs": {
+        "lines": false
+      },
+      "parameters": {
+        "min_dist_to_line": 1.0,
+        "min_neighb_pts": 5
+      },
+      "position": [
+        1660.8511962890625,
+        405.6999816894531
+      ],
+      "type": [
+        "building-reconstruction",
+        "PlaneIntersect"
+      ]
+    },
+    "PolygonBufferGEOS": {
+      "connections": {
+        "offset_polygons": [
+          [
+            "LASInPolygons",
+            "buf_polygons"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "polygons": false
+      },
+      "marked_outputs": {
+        "offset_polygons": false
+      },
+      "parameters": {
+        "offset": 4.0
+      },
+      "position": [
+        170.5,
+        345.0679931640625
+      ],
+      "type": [
+        "io-gdal",
+        "PolygonBufferGEOS"
+      ]
+    },
+    "PolygonSimplifyGEOS": {
+      "connections": {
+        "simplified_polygons": [
+          [
+            "PolygonBufferGEOS",
+            "polygons"
+          ],
+          [
+            "DataCoverageCalc",
+            "footprint_polygon"
+          ],
+          [
+            "BuildArrFromLines",
+            "footprint"
+          ],
+          [
+            "LASInPolygons",
+            "polygons"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "polygons": false
+      },
+      "marked_outputs": {
+        "simplified_polygons": false
+      },
+      "parameters": {
+        "tolerance": 0.009999999776482582
+      },
+      "position": [
+        241.5,
+        300.0679931640625
+      ],
+      "type": [
+        "io-gdal",
+        "PolygonSimplifyGEOS"
+      ]
+    },
+    "PolygonTriangulator-LoD13": {
+      "connections": {
+        "multi_triangle_collections": [
+          [
+            "PC2MeshQuality-LoD13",
+            "triangles"
+          ]
+        ],
+        "normals": [
+          [
+            "3D vlakmodel",
+            "normals"
+          ]
+        ],
+        "ring_ids": [
+          [
+            "PC2MeshQuality-LoD13",
+            "face_ids"
+          ]
+        ],
+        "triangles": [
+          [
+            "3D vlakmodel",
+            "geometries"
+          ],
+          [
+            "OBJWriter-LoD13",
+            "triangles"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "polygons": false
+      },
+      "marked_outputs": {
+        "multi_triangle_collections": true,
+        "normals": false,
+        "ring_ids": false,
+        "triangles": false
+      },
+      "parameters": {
+        "dupe_threshold_exp": 4,
+        "output_all_triangles": false
+      },
+      "position": [
+        3434.1728515625,
+        417.4730224609375
+      ],
+      "type": [
+        "building-reconstruction",
+        "PolygonTriangulator"
+      ]
+    },
+    "RegulariseLines": {
+      "connections": {
+        "exact_regularised_edges": [
+          [
+            "BuildArrFromLines",
+            "lines"
+          ]
+        ],
+        "regularised_edges": [
+          [
+            "Geregulariseerde lijnen",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "edge_segments": false,
+        "ints_segments": false
+      },
+      "marked_outputs": {
+        "angle_cluster_id": false,
+        "dist_cluster_id": false,
+        "edges_out_": false,
+        "exact_footprint_out": false,
+        "exact_regularised_edges": false,
+        "priorities": false,
+        "regularised_edges": false
+      },
+      "parameters": {
+        "angle_threshold": 0.15000000596046448,
+        "dist_threshold": 0.4000000059604645,
+        "extension": 1.399999976158142,
+        "merge_intersection_lines": false
+      },
+      "position": [
+        1995.46533203125,
+        244.89376831054688
+      ],
+      "type": [
+        "building-reconstruction",
+        "RegulariseLines"
+      ]
+    },
+    "SegmentRasterise": {
+      "connections": {
+        "data_area": [
+          [
+            "DataCoverageCalc",
+            "data_area"
+          ]
+        ],
+        "heightfield": [
+          [
+            "OptimiseArrangmentGrid",
+            "heightfield"
+          ],
+          [
+            "ArrDissolve-LoD13",
+            "heightfield"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "alpha_rings": false,
+        "ground_triangles": false,
+        "pts_per_roofplane": false,
+        "roofplane_ids": false,
+        "triangles": false
+      },
+      "marked_outputs": {
+        "data_area": true,
+        "grid_points": false,
+        "heightfield": false,
+        "values": false
+      },
+      "parameters": {
+        "cellsize": 0.05000000074505806,
+        "fill_nodata": false,
+        "fill_nodata_window_size": 5,
+        "megapixel_limit": 600,
+        "use_ground": true
+      },
+      "position": [
+        2003.5,
+        434.3999938964844
+      ],
+      "type": [
+        "building-reconstruction",
+        "SegmentRasterise"
+      ]
+    },
+    "Snijlijnen": {
+      "marked_inputs": {
+        "colormap": false,
+        "geometries": false,
+        "identifiers": false,
+        "normals": false,
+        "values": false
+      },
+      "position": [
+        1630.25,
+        -104.84100341796875
+      ],
+      "type": [
+        "Visualisation",
+        "Painter"
+      ]
+    },
+    "TriSnap": {
+      "connections": {
+        "arrangement": [
+          [
+            "OptimiseArrangmentGrid",
+            "arrangement"
+          ],
+          [
+            "Arr2LinearRingsDebug-ini",
+            "arrangement"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "arrangement": false
+      },
+      "marked_outputs": {
+        "arrangement": false,
+        "segment_ids_og": false,
+        "segment_ids_snapped": false,
+        "triangles_og": false,
+        "triangles_snapped": false
+      },
+      "parameters": {
+        "dist_thres": 0.019999999552965164
+      },
+      "position": [
+        2396.5,
+        277.3179931640625
+      ],
+      "type": [
+        "building-reconstruction",
+        "TriSnap"
+      ]
+    },
+    "Vlak grenzen": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        1351.25,
+        -108.84100341796875
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    }
+  }
+}
