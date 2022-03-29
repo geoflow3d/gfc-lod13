@@ -414,11 +414,11 @@
       "connections": {
         "result": [
           [
-            "AlphaShape",
+            "AlphaShape-ground",
             "skip"
           ],
           [
-            "AlphaShape-ground",
+            "AlphaShape",
             "skip"
           ],
           [
@@ -754,6 +754,10 @@
           [
             "PolygonTriangulator-LoD12",
             "polygons"
+          ],
+          [
+            "Validator-LoD12",
+            "input_geom"
           ]
         ]
       },
@@ -781,6 +785,10 @@
           [
             "PolygonTriangulator-LoD13",
             "polygons"
+          ],
+          [
+            "Validator-LoD13",
+            "input_geom"
           ]
         ]
       },
@@ -1304,6 +1312,52 @@
       "type": [
         "building-reconstruction",
         "TriSnap"
+      ]
+    },
+    "Validator-LoD12": {
+      "marked_inputs": {
+        "input_geom": false
+      },
+      "marked_outputs": {
+        "error_faces": false,
+        "error_locations": false,
+        "errors": true
+      },
+      "parameters": {
+        "log_invalids": false,
+        "tol_planarity_d2p_": 0.009999999776482582,
+        "tol_planarity_normals_": 20.0
+      },
+      "position": [
+        3907.0,
+        57.0
+      ],
+      "type": [
+        "Val3dity",
+        "Validator"
+      ]
+    },
+    "Validator-LoD13": {
+      "marked_inputs": {
+        "input_geom": false
+      },
+      "marked_outputs": {
+        "error_faces": false,
+        "error_locations": false,
+        "errors": true
+      },
+      "parameters": {
+        "log_invalids": false,
+        "tol_planarity_d2p_": 0.009999999776482582,
+        "tol_planarity_normals_": 20.0
+      },
+      "position": [
+        3428.0,
+        1150.0
+      ],
+      "type": [
+        "Val3dity",
+        "Validator"
       ]
     }
   }

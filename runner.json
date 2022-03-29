@@ -30,7 +30,7 @@
     ],
     "OUTPUT_FORMAT": [
       "str",
-      "PostgreSQL"
+      "GPKG"
     ],
     "OUTPUT_LAYERNAME_LOD11_2D": [
       "str",
@@ -202,18 +202,6 @@
           ],
           [
             "Reconstructor",
-            "Arr2LinearRings-LoD13.attributes"
-          ],
-          [
-            "Reconstructor",
-            "AttrRingsSelector-LoD12.attributes_A"
-          ],
-          [
-            "Reconstructor",
-            "AttrRingsSelector-LoD13.attributes_A"
-          ],
-          [
-            "Reconstructor",
             "LOD1Extruder-LoD11.floor_elevation"
           ],
           [
@@ -226,7 +214,19 @@
           ],
           [
             "Reconstructor",
+            "Arr2LinearRings-LoD13.attributes"
+          ],
+          [
+            "Reconstructor",
+            "AttrRingsSelector-LoD12.attributes_A"
+          ],
+          [
+            "Reconstructor",
             "Arr2LinearRings-LoD12.attributes"
+          ],
+          [
+            "Reconstructor",
+            "AttrRingsSelector-LoD13.attributes_A"
           ]
         ],
         "ground_point_clouds": [
@@ -339,6 +339,10 @@
           ],
           [
             "Reconstructor",
+            "AttributeTester.attributes"
+          ],
+          [
+            "Reconstructor",
             "Arr2LinearRings-LoD13.attributes"
           ],
           [
@@ -347,15 +351,11 @@
           ],
           [
             "Reconstructor",
-            "AttrRingsSelector-LoD13.attributes_A"
-          ],
-          [
-            "Reconstructor",
-            "AttributeTester.attributes"
-          ],
-          [
-            "Reconstructor",
             "Arr2LinearRings-LoD12.attributes"
+          ],
+          [
+            "Reconstructor",
+            "AttrRingsSelector-LoD13.attributes_A"
           ]
         ],
         "linear_rings": [
@@ -394,6 +394,7 @@
       "parameters": {
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
+        "gdaldriver": "{{OUTPUT_FORMAT}}",
         "layername": "{{OUTPUT_LAYERNAME_LOD11_2D}}",
         "output_attribute_names": {
           "ArrDissolve-LoD12.global_elevation_50p": "h_dak_50p",
@@ -436,6 +437,7 @@
       "parameters": {
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
+        "gdaldriver": "{{OUTPUT_FORMAT}}",
         "layername": "{{OUTPUT_LAYERNAME_LOD12_2D}}",
         "output_attribute_names": {
           "ground_elevations": "h_maaiveld",
@@ -461,6 +463,7 @@
       "parameters": {
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
+        "gdaldriver": "{{OUTPUT_FORMAT}}",
         "layername": "{{OUTPUT_LAYERNAME_LOD12_3D}}",
         "output_attribute_names": {
           "DataCoverageCalc.data_coverage": "data_coverage",
@@ -496,6 +499,7 @@
       "parameters": {
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
+        "gdaldriver": "{{OUTPUT_FORMAT}}",
         "layername": "{{OUTPUT_LAYERNAME_LOD13_2D}}",
         "output_attribute_names": {
           "ground_elevations": "h_maaiveld",
@@ -521,6 +525,7 @@
       "parameters": {
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
+        "gdaldriver": "{{OUTPUT_FORMAT}}",
         "layername": "{{OUTPUT_LAYERNAME_LOD13_3D}}",
         "output_attribute_names": {
           "DataCoverageCalc.data_coverage": "data_coverage",
@@ -596,7 +601,7 @@
           ],
           [
             "Reconstructor",
-            "BuildArrFromLines.footprint"
+            "LOD1Extruder-LoD11.polygon"
           ],
           [
             "Reconstructor",
@@ -604,11 +609,11 @@
           ],
           [
             "Reconstructor",
-            "LOD1Extruder-LoD11.polygon"
+            "AttrRingsSelector-LoD12.linear_rings_A"
           ],
           [
             "Reconstructor",
-            "AttrRingsSelector-LoD12.linear_rings_A"
+            "BuildArrFromLines.footprint"
           ],
           [
             "Reconstructor",
@@ -919,6 +924,26 @@
             "OGRWriter-LoD11-2D",
             "attributes"
           ]
+        ],
+        "Validator-LoD12.errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD12-3D",
+            "attributes"
+          ]
+        ],
+        "Validator-LoD13.errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD13-3D",
+            "attributes"
+          ]
         ]
       },
       "marked_inputs": {
@@ -973,7 +998,9 @@
         "SegmentRasterise.data_area": false,
         "SkipReplaceTester.replace": false,
         "SkipReplaceTester.roof_type": false,
-        "SkipReplaceTester.skip": false
+        "SkipReplaceTester.skip": false,
+        "Validator-LoD12.errors": false,
+        "Validator-LoD13.errors": false
       },
       "parameters": {
         "filepath": "reconstruct_one.json",
