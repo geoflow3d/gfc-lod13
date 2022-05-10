@@ -229,16 +229,10 @@
             "AttrRingsSelector-LoD13.attributes_A"
           ]
         ],
-        "ground_point_clouds": [
-          [
-            "Reconstructor",
-            "DetectPlanes-ground.points"
-          ]
-        ],
         "point_clouds": [
           [
             "Reconstructor",
-            "DetectPlanes.points"
+            "PointCloudSplitter.point_cloud"
           ]
         ]
       },
@@ -248,7 +242,6 @@
       },
       "marked_outputs": {
         "ground_elevations": false,
-        "ground_point_clouds": false,
         "point_clouds": false
       },
       "parameters": {
@@ -392,6 +385,7 @@
         "geometries": false
       },
       "parameters": {
+        "create_directories": false,
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
         "gdaldriver": "{{OUTPUT_FORMAT}}",
@@ -435,6 +429,7 @@
         "geometries": false
       },
       "parameters": {
+        "create_directories": false,
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
         "gdaldriver": "{{OUTPUT_FORMAT}}",
@@ -461,6 +456,7 @@
         "geometries": false
       },
       "parameters": {
+        "create_directories": false,
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
         "gdaldriver": "{{OUTPUT_FORMAT}}",
@@ -497,6 +493,7 @@
         "geometries": false
       },
       "parameters": {
+        "create_directories": false,
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
         "gdaldriver": "{{OUTPUT_FORMAT}}",
@@ -523,6 +520,7 @@
         "geometries": false
       },
       "parameters": {
+        "create_directories": false,
         "epsg": 7415,
         "filepath": "{{OUTPUT_DB_CONNECTION}}",
         "gdaldriver": "{{OUTPUT_FORMAT}}",
@@ -605,11 +603,11 @@
           ],
           [
             "Reconstructor",
-            "DataCoverageCalc.footprint_polygon"
+            "AttrRingsSelector-LoD12.linear_rings_A"
           ],
           [
             "Reconstructor",
-            "AttrRingsSelector-LoD12.linear_rings_A"
+            "DataCoverageCalc.footprint_polygon"
           ],
           [
             "Reconstructor",
@@ -958,10 +956,10 @@
         "AttributeTester.attributes": false,
         "BuildArrFromLines.footprint": false,
         "DataCoverageCalc.footprint_polygon": false,
-        "DetectPlanes-ground.points": false,
-        "DetectPlanes.points": false,
         "LOD1Extruder-LoD11.floor_elevation": false,
-        "LOD1Extruder-LoD11.polygon": false
+        "LOD1Extruder-LoD11.polygon": false,
+        "PointCloudSplitter.point_cloud": false,
+        "Reconstructor.globals": false
       },
       "marked_outputs": {
         "ArrDissolve-LoD12.global_elevation_50p": false,
@@ -1003,8 +1001,7 @@
         "Validator-LoD13.errors": false
       },
       "parameters": {
-        "filepath": "reconstruct_one.json",
-        "use_parallel_processing": false
+        "filepath": "reconstruct_one.json"
       },
       "position": [
         794.0,

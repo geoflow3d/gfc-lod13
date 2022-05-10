@@ -650,7 +650,7 @@
         ]
       },
       "marked_inputs": {
-        "points": true
+        "points": false
       },
       "marked_outputs": {
         "horiz_roofplane_cnt": false,
@@ -706,7 +706,7 @@
         ]
       },
       "marked_inputs": {
-        "points": true
+        "points": false
       },
       "marked_outputs": {
         "horiz_roofplane_cnt": false,
@@ -1002,6 +1002,45 @@
       "type": [
         "building-reconstruction",
         "PlaneIntersect"
+      ]
+    },
+    "PointCloudSplitter": {
+      "connections": {
+        "A": [
+          [
+            "DetectPlanes-ground",
+            "points"
+          ]
+        ],
+        "B": [
+          [
+            "DetectPlanes",
+            "points"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "point_cloud": true
+      },
+      "marked_outputs": {
+        "A": false,
+        "B": false,
+        "C": false,
+        "D": false
+      },
+      "parameters": {
+        "class A": 2,
+        "class B": 6,
+        "class C": 0,
+        "class D": 1
+      },
+      "position": [
+        557.0,
+        248.0
+      ],
+      "type": [
+        "io-las",
+        "PointCloudClassSplit"
       ]
     },
     "PolygonTriangulator-LoD11": {
