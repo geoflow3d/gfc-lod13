@@ -2,11 +2,7 @@
   "globals": {
     "CJ_DATASET_TITLE": [
       "str",
-      "3D Basisbestrand"
-    ],
-    "CJ_GEOGRAPHIC_LOCATION": [
-      "str",
-      "The Netherlands"
+      "3D Basisbestand"
     ],
     "INPUT_FOOTPRINT_SOURCE": [
       "str",
@@ -136,13 +132,10 @@
         "part_attributes": false
       },
       "parameters": {
-        "citymodelIdentifier": "{{RUN_REFERENCE}}_{{TILE_ID}}",
-        "datasetTitle": "{{CJ_DATASET_TITLE}} Tile {{TILE_ID}}",
+        "meta_identifier": "{{RUN_REFERENCE}}_{{TILE_ID}}",
+        "meta_title": "{{CJ_DATASET_TITLE}} Tile {{TILE_ID}}",
         "filepath": "{{OUTPUT_CITYJSON_DIR}}/{{TILE_ID}}.json",
-        "geographicLocation": "{{CJ_GEOGRAPHIC_LOCATION}}",
         "identifier_attribute": "{{id_attribute}}",
-        "metadataStandard": "",
-        "metadataStandardVersion": "",
         "output_attribute_names": {
           "ArrDissolve-LoD12.global_elevation_50p": "h_dak_50p",
           "ArrDissolve-LoD12.global_elevation_70p": "h_dak_70p",
@@ -162,15 +155,14 @@
           "Validator-LoD22.errors": "val3dity_codes_lod22",
           "ground_elevations": "h_maaiveld"
         },
-        "poc_address": "",
-        "poc_contactName": "",
-        "poc_contactType": "",
-        "poc_emailAddress": "",
-        "poc_phone": "",
-        "poc_website": "",
+        "meta_poc_address": "",
+        "meta_poc_contactName": "",
+        "meta_poc_contactType": "",
+        "meta_poc_emailAddress": "",
+        "meta_poc_phone": "",
+        "meta_poc_website": "",
         "prettyPrint": false,
-        "referenceSystem": "{{OUTPUT_CRS}}",
-        "version_1_0": true
+        "meta_referenceSystem": "{{OUTPUT_CRS}}"
       },
       "position": [
         1866.0,
