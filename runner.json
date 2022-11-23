@@ -412,7 +412,7 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
     "OGRWriter-LoD12-2D": {
@@ -439,7 +439,7 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
     "OGRWriter-LoD12-3D": {
@@ -476,7 +476,7 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
     "OGRWriter-LoD13-2D": {
@@ -503,7 +503,7 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
     "OGRWriter-LoD13-3D": {
@@ -540,7 +540,7 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
     "PolygonBufferGEOS": {
